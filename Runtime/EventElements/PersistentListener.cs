@@ -56,8 +56,8 @@
         [PublicAPI]
         public Type StaticType => _staticType;
 
-        [NonSerialized] internal bool _initializationComplete;
-        [NonSerialized] private bool _initializationSuccessful;
+        [NonSerialized] internal bool _initializationComplete = false;
+        [NonSerialized] private bool _initializationSuccessful = false;
         private unsafe void*[] _arguments;
         private BaseInvokableCall _invokableCall;
 
@@ -184,7 +184,7 @@
         {
             // If no function is chosen, exit without any warnings.
             if (CallState == UnityEventCallState.Off || string.IsNullOrEmpty(_methodName))
-                 return;
+                return;
 
 #if UNITY_EDITOR
             if (CallState == UnityEventCallState.RuntimeOnly && !Application.isPlaying)
@@ -249,6 +249,7 @@
             InitializeArguments();
 
             _initializationComplete = true;
+            _initializationSuccessful = true;
             return true;
         }
 

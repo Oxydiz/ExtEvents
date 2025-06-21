@@ -14,7 +14,7 @@
     [Serializable]
     public abstract class BaseExtEvent
     {
-        [SerializeField] internal PersistentListener[] _persistentListeners;
+        [SerializeField] internal PersistentListener[] _persistentListeners = { };
 
         /// <summary>
         /// A list of the persistent listeners of this event. <see cref="PersistentListener"/> is a listener that is configured in editor UI.
